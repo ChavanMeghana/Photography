@@ -229,94 +229,113 @@ export default function Home() {
       <GalleryStrip />
 
       {/* ═══════════════════════════════════════════════
-          START YOUR PROJECT  — fully redesigned
+          START YOUR PROJECT  — split image + text
       ═══════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden">
+      <section className="overflow-hidden bg-obsidian-900">
+        <div className="flex flex-col lg:flex-row">
 
-        {/* Mosaic background */}
-        <div className="absolute inset-0 grid grid-cols-3 gap-px">
-          {ctaImages.map((src, i) => (
-            <div key={i} className="relative overflow-hidden">
+          {/* ── Left: Photo panel ───────────────────── */}
+          <div className="lg:w-[45%] flex flex-col h-[360px] lg:h-auto lg:min-h-[700px]">
+
+            {/* Main image */}
+            <div className="relative flex-1 overflow-hidden">
               <img
-                src={`https://images.unsplash.com/${src}?auto=format&fit=crop&w=640&h=1000&q=65`}
-                alt=""
-                className="w-full h-full object-cover scale-110"
+                src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&h=1100&q=85"
+                alt="Wedding photography"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[8000ms] hover:scale-105"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-obsidian-900/25" />
+              <div className="grain absolute inset-0 pointer-events-none" />
+              <div className="absolute bottom-5 left-5 sm:bottom-7 sm:left-7">
+                <span className="label-caps text-ivory-100/60 bg-obsidian-900/50 px-3 py-1.5 backdrop-blur-sm">
+                  Tuscany, Italy · 2024
+                </span>
+              </div>
             </div>
-          ))}
-        </div>
-        {/* Overlay: very dark so text is always readable */}
-        <div className="absolute inset-0 bg-obsidian-900/90" />
-        <div className="absolute inset-x-0 top-0 h-24"
-          style={{ background: 'linear-gradient(to bottom, #080808, transparent)' }} />
-        <div className="absolute inset-x-0 bottom-0 h-24"
-          style={{ background: 'linear-gradient(to top, #080808, transparent)' }} />
-        <div className="grain absolute inset-0 pointer-events-none" />
 
-        {/* Content */}
-        <div className="relative z-10 py-20 sm:py-28 px-6 sm:px-10 lg:px-16">
-          <div className="max-w-xl mx-auto text-center">
+            {/* Thumbnail strip */}
+            <div className="flex h-[90px] sm:h-[110px] lg:h-[130px]">
+              {ctaImages.map((src, i) => (
+                <div key={i} className="relative flex-1 overflow-hidden border-l first:border-l-0 border-obsidian-700">
+                  <img
+                    src={`https://images.unsplash.com/${src}?auto=format&fit=crop&w=300&h=300&q=75`}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-obsidian-900/20 hover:bg-obsidian-900/0 transition-colors duration-500" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right: CTA content ──────────────────── */}
+          <div className="lg:w-[55%] border-t lg:border-t-0 lg:border-l border-obsidian-700
+                          flex flex-col justify-center
+                          px-8 sm:px-12 lg:px-16 xl:px-24 py-16 lg:py-20">
 
             <ScrollReveal preset="fadeIn">
-              <span className="label-caps text-gold-400/60">Let's Work Together</span>
-              <div className="w-8 h-px bg-gold-400/30 mx-auto mt-3 mb-8 sm:mb-10" />
+              <span className="label-caps text-gold-400/70">Let's Work Together</span>
+              <div className="w-8 h-px bg-gold-400/30 mt-3 mb-8 sm:mb-10" />
             </ScrollReveal>
 
             <ScrollReveal preset="fadeUp" delay={0.1}>
-              <h2 className="heading-serif text-display-sm text-ivory-100 mb-5 sm:mb-6">
-                Start Your <em className="text-gold-400">Project</em>
+              <h2 className="heading-serif text-display-sm text-ivory-100 leading-[1.05] mb-5 sm:mb-6">
+                Start Your<br />
+                <em className="text-gold-400">Project</em>
               </h2>
             </ScrollReveal>
 
             <ScrollReveal preset="fadeUp" delay={0.2}>
-              <p className="font-sans text-sm text-ivory-300/55 leading-[1.9] mb-8 sm:mb-10">
+              <p className="font-sans text-sm text-ivory-300/55 leading-[1.9] mb-8 sm:mb-10 max-w-md">
                 Whether you have a clear vision or just a feeling you want to capture,
                 we would love to hear about it. Every great photograph starts with a conversation.
               </p>
             </ScrollReveal>
 
-            {/* CTA buttons — stacked on mobile, side-by-side on sm+ */}
             <ScrollReveal preset="fadeUp" delay={0.3}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
-                <Link to="/contact" className="btn-gold w-full sm:w-auto justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-12">
+                <Link to="/contact" className="btn-gold justify-center sm:justify-start">
                   Get in Touch
                 </Link>
-                <Link to="/portfolio" className="btn-outline-ivory w-full sm:w-auto justify-center">
+                <Link to="/portfolio" className="btn-outline-ivory justify-center sm:justify-start">
                   View Portfolio
                 </Link>
               </div>
             </ScrollReveal>
 
-            {/* Photography type tags */}
             <ScrollReveal preset="fadeIn" delay={0.4}>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap gap-2 mb-12 sm:mb-16">
                 {['Portrait', 'Fashion', 'Landscape', 'Wedding', 'Commercial', 'Events'].map(type => (
                   <span key={type}
-                    className="font-sans text-2xs tracking-ultra uppercase text-ivory-400/40 border border-obsidian-600 px-3 py-1.5 sm:px-4 sm:py-2">
+                    className="font-sans text-2xs tracking-ultra uppercase text-ivory-400/40
+                               border border-obsidian-600 hover:border-gold-400/40 hover:text-ivory-300/60
+                               px-3 py-1.5 sm:px-4 sm:py-2 transition-colors duration-400 cursor-default">
                     {type}
                   </span>
                 ))}
               </div>
             </ScrollReveal>
+
+            {/* Stats */}
+            <ScrollReveal preset="fadeUp" delay={0.25}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-obsidian-700/50">
+                {[
+                  { val: '380+', label: 'Projects' },
+                  { val: '28',   label: 'Countries' },
+                  { val: '12yr', label: 'Experience' },
+                  { val: '5★',   label: 'Rated' },
+                ].map(({ val, label }) => (
+                  <div key={label} className="bg-obsidian-900 text-center py-5 sm:py-6 px-4">
+                    <p className="font-serif text-2xl sm:text-3xl font-light text-ivory-200">{val}</p>
+                    <p className="label-caps-sm text-ivory-400/40 mt-1">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
 
-          {/* Stats row */}
-          <ScrollReveal preset="fadeUp" delay={0.2} className="mt-14 sm:mt-20">
-            <div className="max-w-2xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-px bg-obsidian-700/40">
-              {[
-                { val: '380+', label: 'Projects' },
-                { val: '28',   label: 'Countries' },
-                { val: '12yr', label: 'Experience' },
-                { val: '5★',   label: 'Rated' },
-              ].map(({ val, label }) => (
-                <div key={label} className="bg-obsidian-900/60 text-center py-6 px-4">
-                  <p className="font-serif text-2xl sm:text-3xl font-light text-ivory-200">{val}</p>
-                  <p className="label-caps-sm text-ivory-400/40 mt-1">{label}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
