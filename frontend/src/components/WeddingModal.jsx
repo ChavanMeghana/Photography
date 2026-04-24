@@ -37,12 +37,12 @@ export default function WeddingModal({ wedding, onClose }) {
 
           <motion.div
             key="panel"
-            initial={{ opacity: 0, y: 50, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30 }}
-            transition={{ type: 'spring', stiffness: 240, damping: 26 }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 28 }}
             onClick={e => e.stopPropagation()}
-            className="relative bg-ivory-100 w-full max-w-4xl max-h-[94vh] overflow-y-auto shadow-dark-xl sm:rounded-none"
+            className="relative bg-ivory-100 w-full max-w-4xl max-h-[92vh] sm:max-h-[94vh] overflow-y-auto shadow-dark-xl"
           >
             {/* Close button */}
             <button
@@ -81,7 +81,7 @@ export default function WeddingModal({ wedding, onClose }) {
             </div>
 
             {/* Body */}
-            <div className="px-8 sm:px-12 lg:px-16 py-12">
+            <div className="px-5 sm:px-10 lg:px-16 py-10 sm:py-12">
 
               {/* Story */}
               <div className="max-w-xl mx-auto text-center mb-12">

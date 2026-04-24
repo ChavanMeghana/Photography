@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Quote */}
-        <div className="max-w-3xl mx-auto min-h-[200px] flex items-center justify-center">
+        <div className="max-w-3xl mx-auto min-h-[160px] sm:min-h-[200px] flex items-center justify-center px-2">
           <AnimatePresence mode="wait">
             <motion.blockquote
               key={active}
@@ -45,7 +45,7 @@ export default function TestimonialsSection() {
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: -14, filter: 'blur(3px)' }}
               transition={{ duration: 0.75, ease: [0.23,1,0.32,1] }}
-              className="font-serif text-xl sm:text-2xl lg:text-3xl italic font-light text-ivory-200 leading-[1.65] text-center text-balance"
+              className="font-serif text-lg sm:text-2xl lg:text-3xl italic font-light text-ivory-200 leading-[1.65] text-center text-balance"
             >
               {t.quote}
             </motion.blockquote>
@@ -80,42 +80,52 @@ export default function TestimonialsSection() {
         </AnimatePresence>
 
         {/* Dots + navigation */}
-        <div className="flex flex-col items-center gap-5 mt-12">
-          <div className="flex gap-3">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`transition-all duration-500 ease-luxury ${
-                  i === active
-                    ? 'w-8 h-0.5 bg-gold-400'
-                    : 'w-1.5 h-1.5 rounded-full bg-ivory-300/20 hover:bg-ivory-300/50'
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex gap-8">
+        {/* Navigation — large touch targets for mobile */}
+        <div className="flex flex-col items-center gap-5 mt-10 sm:mt-12">
+          {/* Prev / Next — wide tap area */}
+          <div className="flex items-center gap-6">
             <button
               onClick={() => setActive(i => (i - 1 + testimonials.length) % testimonials.length)}
-              className="label-caps-sm text-ivory-400/30 hover:text-gold-400 transition-colors duration-300"
+              className="flex items-center justify-center w-11 h-11 border border-obsidian-600 text-ivory-400/40 hover:border-gold-400/50 hover:text-gold-400 transition-all duration-300"
+              aria-label="Previous"
             >
-              ← Prev
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
+            {/* Dots */}
+            <div className="flex gap-2.5">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`transition-all duration-500 ease-luxury ${
+                    i === active
+                      ? 'w-7 h-0.5 bg-gold-400'
+                      : 'w-1.5 h-1.5 rounded-full bg-ivory-300/20 hover:bg-ivory-300/50'
+                  }`}
+                  aria-label={`Testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
             <button
               onClick={() => setActive(i => (i + 1) % testimonials.length)}
-              className="label-caps-sm text-ivory-400/30 hover:text-gold-400 transition-colors duration-300"
+              className="flex items-center justify-center w-11 h-11 border border-obsidian-600 text-ivory-400/40 hover:border-gold-400/50 hover:text-gold-400 transition-all duration-300"
+              aria-label="Next"
             >
-              Next →
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
 
         {/* Press row */}
-        <div className="mt-20 pt-10 border-t border-obsidian-700">
-          <p className="label-caps-sm text-ivory-300/25 text-center mb-7">As Seen In</p>
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
-            {['Vogue Weddings', 'Harper\'s Bazaar', 'Brides Magazine', 'Martha Stewart', 'The Knot'].map(p => (
-              <span key={p} className="font-serif italic text-base text-ivory-300/25 hover:text-ivory-300/50 transition-colors duration-300 cursor-default">
+        <div className="mt-14 sm:mt-20 pt-8 sm:pt-10 border-t border-obsidian-700">
+          <p className="label-caps-sm text-ivory-300/25 text-center mb-5 sm:mb-7">As Seen In</p>
+          <div className="flex flex-wrap justify-center gap-x-6 sm:gap-x-10 gap-y-3 sm:gap-y-4">
+            {['Vogue Italia', 'National Geographic', 'Harper\'s Bazaar', 'Condé Nast', 'The Times'].map(p => (
+              <span key={p} className="font-serif italic text-sm sm:text-base text-ivory-300/25 cursor-default">
                 {p}
               </span>
             ))}

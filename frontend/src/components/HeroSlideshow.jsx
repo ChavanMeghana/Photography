@@ -142,7 +142,7 @@ export default function HeroSlideshow() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-sans text-xs text-ivory-200/60 tracking-ultra uppercase mb-10"
+            className="font-sans text-2xs sm:text-xs text-ivory-200/60 tracking-widest sm:tracking-ultra uppercase mb-8 sm:mb-10 max-w-xs sm:max-w-none mx-auto"
           >
             {slide.sub}
           </motion.p>
@@ -153,13 +153,13 @@ export default function HeroSlideshow() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.1 }}
-          className="flex flex-col sm:flex-row items-center gap-5"
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 w-full max-w-xs sm:max-w-none mx-auto"
         >
-          <Link to="/portfolio" className="btn-gold">
+          <Link to="/portfolio" className="btn-gold w-full sm:w-auto justify-center">
             View Portfolio
           </Link>
-          <Link to="/contact" className="btn-ghost-ivory">
-            Begin Your Story
+          <Link to="/contact" className="btn-ghost-ivory w-full sm:w-auto justify-center">
+            Get in Touch
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
