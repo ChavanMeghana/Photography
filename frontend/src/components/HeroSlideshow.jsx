@@ -215,7 +215,7 @@ export default function HeroSlideshow() {
         </motion.div>
         <motion.div
           className="w-px bg-ivory-300/20 origin-top"
-          animate={{ scaleY: [0, 1, 0], height: 40 }}
+          animate={{ scaleY: [0, 1, 0] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
           style={{ height: 40 }}
         />

@@ -73,7 +73,7 @@ export default function WeddingStoryCard({ wedding, onClick, size = 'half' }) {
 
         {/* Brief */}
         <motion.p
-          animate={hovered ? { opacity: 1, maxHeight: 80, marginTop: 12 } : { opacity: 0, maxHeight: 0, marginTop: 0 }}
+          animate={hovered ? { opacity: 1, maxHeight: '80px', marginTop: '12px' } : { opacity: 0, maxHeight: '0px', marginTop: '0px' }}
           transition={{ duration: 0.45, ease: [0.23,1,0.32,1] }}
           className="font-serif italic text-sm font-light text-ivory-200/65 leading-relaxed overflow-hidden"
         >

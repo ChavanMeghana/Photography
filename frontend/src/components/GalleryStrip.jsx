@@ -38,7 +38,7 @@ export default function GalleryStrip() {
       <div className="flex gap-1.5 pause-hover">
         <motion.div
           className="flex gap-1.5"
-          animate={{ x: [0, '-50%'] }}
+          animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
         >
           {doubled.map((item, i) => <ImageItem key={`a-${i}`} item={item} />)}
@@ -49,7 +49,7 @@ export default function GalleryStrip() {
       <div className="flex gap-1.5 mt-1.5 pause-hover">
         <motion.div
           className="flex gap-1.5"
-          animate={{ x: ['-50%', 0] }}
+          animate={{ x: ['-50%', '0%'] }}
           transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
         >
           {doubled.map((item, i) => <ImageItem key={`b-${i}`} item={item} />)}
