@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8D4A0;
-    --obsidian: #0E0C09;
-    --ivory: #FDFAF6;
-    --brown: #2C2018;
+    --gold: #F5A623;
+    --gold-light: #FFE09A;
+    --obsidian: #080808;
+    --ivory: #F6F6F6;
+    --brown: #1E1E1E;
   }
 
   * { cursor: none !important; box-sizing: border-box; }

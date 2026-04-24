@@ -43,20 +43,20 @@ export default function LoadingScreen() {
         {/* Name */}
         <div className="text-center">
           <motion.p
-            initial={{ opacity: 0, letterSpacing: '0.35em' }}
-            animate={{ opacity: 1, letterSpacing: '0.22em' }}
+            initial={{ opacity: 0, letterSpacing: '0.45em' }}
+            animate={{ opacity: 1, letterSpacing: '0.32em' }}
             transition={{ duration: 1.2, delay: 0.2 }}
-            className="font-serif text-xl font-light text-ivory-200 tracking-[0.22em]"
+            className="font-serif text-2xl font-light text-ivory-200 tracking-[0.32em] uppercase"
           >
-            ELENA MARCHETTI
+            Bond
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="font-sans text-3xs text-gold-400/50 tracking-mega uppercase mt-2"
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="font-sans text-3xs text-gold-400/50 tracking-mega uppercase mt-1"
           >
-            Photography
+            Studio
           </motion.p>
         </div>
 

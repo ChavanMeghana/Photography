@@ -13,10 +13,19 @@ import { GoldDivider, SectionLabel } from '../components/GoldDivider'
 import { weddings } from '../data/weddings'
 
 const stats = [
-  { value: '248', sup: '+', label: 'Love Stories' },
-  { value: '18', sup: '', label: 'Countries' },
-  { value: '9', sup: '', label: 'Years' },
+  { value: '380', sup: '+', label: 'Projects Completed' },
+  { value: '28', sup: '', label: 'Countries' },
+  { value: '12', sup: '', label: 'Years' },
   { value: '★★★★★', sup: '', label: 'Rated' },
+]
+
+const services = [
+  { icon: '◎', title: 'Portrait', desc: 'Fine art portraiture for individuals, families, and professionals.' },
+  { icon: '◈', title: 'Fashion', desc: 'Editorial and commercial fashion photography for brands and publications.' },
+  { icon: '◉', title: 'Landscape', desc: 'Expedition and fine art landscape photography across all continents.' },
+  { icon: '◇', title: 'Wedding', desc: 'Cinematic, timeless wedding storytelling for the discerning couple.' },
+  { icon: '◆', title: 'Commercial', desc: 'Campaign photography for luxury brands and global creative agencies.' },
+  { icon: '◐', title: 'Event', desc: 'Documentary and editorial coverage of concerts, galas, and cultural events.' },
 ]
 
 const featured = weddings.filter(w => w.featured).slice(0, 3)
@@ -35,24 +44,24 @@ export default function Home() {
         <div className="container-site">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal preset="fadeIn">
-              <SectionLabel centered>The Art of Love</SectionLabel>
+              <SectionLabel centered>Visual Storytelling</SectionLabel>
             </ScrollReveal>
             <ScrollReveal preset="fadeUp" delay={0.15} className="mt-10">
               <h2 className="heading-serif text-display-sm text-warm-800 text-balance">
-                Every wedding is a singular story.
-                <br /><em>I am here to tell yours.</em>
+                We photograph everything —
+                <br /><em>with the same obsessive care.</em>
               </h2>
             </ScrollReveal>
             <ScrollReveal preset="fadeUp" delay={0.3} className="mt-8">
               <p className="font-sans text-sm text-warm-500 leading-[1.9] max-w-xl mx-auto">
-                Based in Florence and available worldwide, I photograph weddings the way you will remember them —
-                with intimacy, grace, and an unwavering eye for the moments that define a lifetime.
-                I believe in beauty that is real, light that is honest, and love that is worth preserving forever.
+                Bond Studio is a photography collective based in Florence, available worldwide.
+                From intimate portraits to epic landscapes, editorial fashion to cinematic weddings —
+                we bring the same uncompromising eye and dedication to every frame we make.
               </p>
             </ScrollReveal>
             <ScrollReveal preset="fadeUp" delay={0.45} className="mt-10">
               <Link to="/about" className="btn-ghost-dark">
-                Meet Elena
+                About the Studio
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -62,44 +71,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Split feature — full-bleed photo left ───── */}
+      {/* ── Services Grid ───────────────────────────── */}
+      <section className="section-pad-sm bg-ivory-200 border-y border-ivory-400">
+        <div className="container-site">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-ivory-400">
+            {services.map((s, i) => (
+              <ScrollReveal key={s.title} preset="fadeUp" delay={i * 0.06}
+                className="bg-ivory-100 p-6 lg:p-8 text-center group hover:bg-obsidian-900 transition-colors duration-500">
+                <div className="font-serif text-2xl text-gold-400/50 mb-3 group-hover:text-gold-400 transition-colors duration-500">{s.icon}</div>
+                <p className="label-caps text-warm-700 group-hover:text-ivory-200 transition-colors duration-500 mb-2">{s.title}</p>
+                <p className="font-sans text-2xs text-warm-400 leading-relaxed group-hover:text-ivory-400/60 transition-colors duration-500 hidden lg:block">{s.desc}</p>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Split feature ───────────────────────────── */}
       <section className="overflow-hidden">
         <div className="lg:grid lg:grid-cols-2">
-          {/* Image side */}
           <ScrollReveal preset="fadeLeft" className="relative h-[65vw] lg:h-full min-h-[460px]">
             <div className="absolute inset-0" style={{
-              background: `radial-gradient(ellipse at 45% 55%, rgba(240,195,100,0.6) 0%, transparent 55%),
-                linear-gradient(158deg,#2E1A08,#8B5020,#D08040)`
+              background: `radial-gradient(ellipse at 45% 55%, rgba(245,166,35,0.45) 0%, transparent 55%),
+                linear-gradient(158deg,#0C0804,#3A2010,#8A5020)`
             }} />
             <img
               src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&h=1100&q=85"
-              alt="Couple portrait"
+              alt="Photography session"
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
             <div className="grain absolute inset-0 pointer-events-none" />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 70%, rgba(253,250,246,0.15) 100%)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 70%, rgba(246,246,246,0.12) 100%)' }} />
           </ScrollReveal>
 
-          {/* Text side */}
           <ScrollReveal preset="fadeRight" className="bg-ivory-200 flex flex-col justify-center px-10 sm:px-16 lg:px-20 py-20 lg:py-0">
-            <SectionLabel centered={false} className="mb-8">Philosophy</SectionLabel>
+            <SectionLabel centered={false} className="mb-8">Our Philosophy</SectionLabel>
             <h2 className="heading-serif text-display-xs text-warm-800 leading-[1.12] mb-7">
-              I don't just photograph weddings.
+              We don't just take photographs.
               <br />
-              <em className="text-warm-600">I preserve how they felt.</em>
+              <em className="text-warm-600">We make images that last.</em>
             </h2>
             <p className="font-sans text-sm text-warm-500 leading-[1.9] mb-5">
-              The trembling hands before the vows. The first glance across a crowded room.
-              The quiet moments between all the planned ones — the ones you only notice when
-              you look at your photographs years later and feel your breath catch.
+              Every discipline of photography demands something different — different patience,
+              different instincts, different light. We have spent over a decade mastering all of them,
+              because the world is too varied and too beautiful to see it only one way.
             </p>
             <p className="font-sans text-sm text-warm-500 leading-[1.9] mb-8">
-              That is what I am here to capture. Not just images, but the irreplaceable feeling of
-              being deeply in love on the most beautiful day of your life.
+              Our studio is built on a single conviction: that extraordinary photographs come from
+              genuine connection — to the subject, the environment, and the story being told.
             </p>
             <Link to="/about" className="btn-outline-warm self-start">
-              My Approach
+              Our Approach
             </Link>
           </ScrollReveal>
         </div>
@@ -121,50 +144,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured Stories ─────────────────────────── */}
+      {/* ── Recent Stories ───────────────────────────── */}
       <section className="section-pad bg-ivory-100">
         <div className="container-site">
           <ScrollReveal className="flex items-end justify-between mb-12">
             <div>
-              <SectionLabel centered={false}>Portfolio</SectionLabel>
+              <SectionLabel centered={false}>Selected Work</SectionLabel>
               <h2 className="heading-serif text-display-sm text-warm-800 mt-5">
-                Recent <em>Stories</em>
+                Recent <em>Projects</em>
               </h2>
             </div>
             <Link to="/portfolio" className="btn-ghost-dark hidden sm:flex">
-              All Stories
+              All Projects
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
           </ScrollReveal>
 
-          {/* Asymmetric grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+          {/* Asymmetric grid — explicit heights so cards always fill correctly */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            {/* Large feature card */}
             {featured[0] && (
-              <ScrollReveal preset="fadeRight" className="md:col-span-7">
-                <WeddingStoryCard wedding={featured[0]} onClick={setSelected} size="full" />
+              <ScrollReveal preset="fadeRight" className="lg:col-span-7">
+                <div className="h-[420px] sm:h-[500px]">
+                  <WeddingStoryCard wedding={featured[0]} onClick={setSelected} />
+                </div>
               </ScrollReveal>
             )}
-            <div className="md:col-span-5 grid grid-cols-1 gap-3">
-              {featured.slice(1).map((w, i) => (
-                <ScrollReveal key={w.id} preset="fadeLeft" delay={i * 0.1}>
-                  <WeddingStoryCard wedding={w} onClick={setSelected} />
+
+            {/* Two stacked cards */}
+            <div className="lg:col-span-5 flex flex-col gap-4">
+              {featured.slice(1, 3).map((w, i) => (
+                <ScrollReveal key={w.id} preset="fadeLeft" delay={i * 0.12} className="flex-1">
+                  <div className="h-[200px] sm:h-[240px]">
+                    <WeddingStoryCard wedding={w} onClick={setSelected} />
+                  </div>
                 </ScrollReveal>
               ))}
             </div>
           </div>
 
+          {/* Mobile: view all */}
           <div className="mt-8 text-center sm:hidden">
-            <Link to="/portfolio" className="btn-outline-warm">View All Stories</Link>
+            <Link to="/portfolio" className="btn-outline-warm">View All Projects</Link>
           </div>
         </div>
       </section>
 
       {/* ── Parallax divider ─────────────────────────── */}
       <ParallaxBand
-        src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&h=900&q=80"
-        gradient="radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.3) 0%, transparent 70%), linear-gradient(160deg,#0e0c09,#2c2018,#4a3020)"
+        src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&h=900&q=80"
+        gradient="radial-gradient(ellipse at 50% 55%, rgba(60,120,200,0.30) 0%, transparent 65%), linear-gradient(160deg,#050810,#0C1828,#1C3050)"
         height="55vh"
         overlay="overlay-full"
       >
@@ -172,11 +203,10 @@ export default function Home() {
           <ScrollReveal preset="scaleIn">
             <span className="font-serif italic text-6xl text-gold-400/20 leading-none select-none">"</span>
             <blockquote className="font-serif text-2xl sm:text-3xl italic font-light text-ivory-200 leading-[1.65] -mt-4 text-balance">
-              The wedding day passes in the blink of an eye.
-              The photographs last forever.
+              The best photograph is the one that comes closest to truth — whatever form that truth takes.
             </blockquote>
             <div className="w-8 h-px bg-gold-400/50 mx-auto my-5" />
-            <p className="font-sans text-xs text-ivory-300/50 tracking-ultra uppercase">Elena Marchetti</p>
+            <p className="font-sans text-xs text-ivory-300/50 tracking-ultra uppercase">Bond Studio</p>
           </ScrollReveal>
         </div>
       </ParallaxBand>
@@ -187,33 +217,32 @@ export default function Home() {
       {/* ── Gallery Strip ────────────────────────────── */}
       <GalleryStrip />
 
-      {/* ── CTA Section ──────────────────────────────── */}
+      {/* ── CTA ──────────────────────────────────────── */}
       <section className="section-pad bg-ivory-100">
         <div className="container-site">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20 items-center max-w-5xl mx-auto">
             <ScrollReveal preset="fadeRight">
-              <SectionLabel centered={false} className="mb-7">Limited Availability</SectionLabel>
+              <SectionLabel centered={false} className="mb-7">Let's Work Together</SectionLabel>
               <h2 className="heading-serif text-display-sm text-warm-800 leading-[1.1] mb-6">
-                Begin Your <em>Love Story</em>
+                Start Your <em>Project</em>
               </h2>
               <p className="font-sans text-sm text-warm-500 leading-[1.9] mb-8">
-                I photograph a select number of weddings each year — ensuring every couple receives
-                my full artistry and personal attention. I would love to hear about yours.
+                Whether you have a clear vision or just a feeling you want to capture,
+                we would love to hear about it. Every great photograph starts with a conversation.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/contact" className="btn-gold">Inquire About Your Date</Link>
+                <Link to="/contact" className="btn-gold">Get in Touch</Link>
                 <Link to="/portfolio" className="btn-outline-warm">View Portfolio</Link>
               </div>
             </ScrollReveal>
 
-            {/* Mini image grid */}
             <ScrollReveal preset="fadeLeft" className="mt-12 lg:mt-0">
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { src: 'photo-1583939003579-730e3918a45a', h: 'h-52' },
-                  { src: 'photo-1465495976277-4387d4b0e4a6', h: 'h-52' },
-                  { src: 'photo-1519225421980-715cb0215aed', h: 'h-36' },
-                  { src: 'photo-1537633552985-df8429e8048b', h: 'h-36' },
+                  { src: 'photo-1534528741775-53994a69daeb', h: 'h-52' },
+                  { src: 'photo-1469334031218-e382a71b716b', h: 'h-52' },
+                  { src: 'photo-1476514525535-07fb3b4ae5f1', h: 'h-36' },
+                  { src: 'photo-1519741497674-611481863552', h: 'h-36' },
                 ].map(({ src, h }, i) => (
                   <motion.div
                     key={i}
@@ -240,11 +269,11 @@ export default function Home() {
       <footer className="bg-obsidian-900 py-16 border-t border-obsidian-700">
         <div className="container-site px-6 sm:px-10 lg:px-16">
           <div className="text-center mb-10">
-            <p className="font-serif italic text-2xl font-light text-ivory-200 mb-1">Elena Marchetti Photography</p>
+            <p className="font-serif italic text-2xl font-light text-ivory-200 mb-1">Bond Studio</p>
             <p className="font-sans text-xs text-ivory-400/40 tracking-wider">Based in Florence · Available Worldwide</p>
           </div>
           <div className="flex justify-center gap-10 mb-10">
-            {[['Portfolio', '/portfolio'], ['About', '/about'], ['Inquire', '/contact']].map(([l, to]) => (
+            {[['Portfolio', '/portfolio'], ['About', '/about'], ['Contact', '/contact']].map(([l, to]) => (
               <Link key={l} to={to} className="font-sans text-2xs tracking-ultra uppercase text-ivory-400/35 hover:text-gold-400 transition-colors duration-400">
                 {l}
               </Link>
@@ -252,7 +281,7 @@ export default function Home() {
           </div>
           <div className="w-20 h-px bg-obsidian-700 mx-auto mb-8" />
           <p className="font-sans text-xs text-ivory-400/25 text-center">
-            © {new Date().getFullYear()} Elena Marchetti Photography. All rights reserved.
+            © {new Date().getFullYear()} Bond Studio. All rights reserved.
           </p>
         </div>
       </footer>

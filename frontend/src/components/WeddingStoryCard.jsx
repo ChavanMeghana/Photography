@@ -1,9 +1,20 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-export default function WeddingStoryCard({ wedding, onClick, size = 'half' }) {
+const typeColors = {
+  Portrait:   'bg-amber-500/20 text-amber-300 border-amber-400/30',
+  Fashion:    'bg-blue-500/20 text-blue-300 border-blue-400/30',
+  Landscape:  'bg-emerald-500/20 text-emerald-300 border-emerald-400/30',
+  Wedding:    'bg-rose-500/20 text-rose-300 border-rose-400/30',
+  Commercial: 'bg-gold-400/20 text-gold-300 border-gold-400/30',
+  Street:     'bg-orange-500/20 text-orange-300 border-orange-400/30',
+}
+
+export default function WeddingStoryCard({ wedding, onClick }) {
   const [imgLoaded, setImgLoaded] = useState(false)
   const [hovered, setHovered] = useState(false)
+
+  const badgeClass = typeColors[wedding.type] || 'bg-gold-400/20 text-gold-300 border-gold-400/30'
 
   return (
     <motion.article
@@ -15,15 +26,13 @@ export default function WeddingStoryCard({ wedding, onClick, size = 'half' }) {
       onClick={() => onClick(wedding)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`relative overflow-hidden group cursor-pointer ${
-        size === 'full' ? 'aspect-[16/9] sm:aspect-[21/9]' : 'aspect-[3/4]'
-      }`}
+      className="relative overflow-hidden group cursor-pointer w-full h-full"
       data-hover
     >
-      {/* --- Gradient always rendered (fallback + loading state) --- */}
+      {/* Gradient fallback */}
       <div className="absolute inset-0" style={{ background: wedding.coverGradient }} />
 
-      {/* --- Real photo --- */}
+      {/* Photo */}
       <motion.img
         src={wedding.coverImage}
         alt={wedding.couple}
@@ -34,61 +43,64 @@ export default function WeddingStoryCard({ wedding, onClick, size = 'half' }) {
         transition={{ duration: 1.0, ease: [0.23,1,0.32,1] }}
       />
 
-      {/* Grain */}
       <div className="grain absolute inset-0 pointer-events-none" />
-
-      {/* Base overlay */}
       <div className="absolute inset-0 overlay-dark" />
-
-      {/* Hover tint */}
       <motion.div
         className="absolute inset-0 bg-obsidian-900/20"
-        animate={hovered ? { opacity: 1 } : { opacity: 0 }}
+        animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.5 }}
       />
 
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
+      {/* Type badge — top left */}
+      <div className="absolute top-4 left-4 z-10">
+        <span className={`font-sans text-3xs tracking-mega uppercase px-2.5 py-1 border backdrop-blur-sm ${badgeClass}`}>
+          {wedding.type}
+        </span>
+      </div>
 
-        {/* Season — reveals on hover */}
-        <motion.div
-          animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          transition={{ duration: 0.4 }}
-          className="mb-3"
+      {/* Content — bottom */}
+      <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-7">
+        {/* Year — hover reveal */}
+        <motion.span
+          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 6 }}
+          transition={{ duration: 0.35 }}
+          className="label-caps-sm text-gold-400/70 mb-2 block"
         >
-          <span className="label-caps-sm text-gold-400/60">{wedding.season} · {wedding.date.split(' ')[1]}</span>
-        </motion.div>
+          {wedding.date}
+        </motion.span>
 
-        {/* Couple */}
-        <h3 className="font-serif text-3xl sm:text-4xl font-light text-ivory-100 leading-tight mb-1.5">
+        {/* Title */}
+        <h3 className="font-serif text-2xl sm:text-3xl font-light text-ivory-100 leading-tight mb-1">
           {wedding.couple}
         </h3>
 
         {/* Location */}
-        <p className="font-sans text-xs text-ivory-200/60 tracking-wide">
+        <p className="font-sans text-xs text-ivory-200/55 tracking-wide">
           {wedding.venue}
           <span className="mx-2 text-gold-400/40">·</span>
           {wedding.region}
         </p>
 
-        {/* Brief */}
+        {/* Brief — hover reveal */}
         <motion.p
-          animate={hovered ? { opacity: 1, maxHeight: '80px', marginTop: '12px' } : { opacity: 0, maxHeight: '0px', marginTop: '0px' }}
-          transition={{ duration: 0.45, ease: [0.23,1,0.32,1] }}
-          className="font-serif italic text-sm font-light text-ivory-200/65 leading-relaxed overflow-hidden"
+          animate={hovered
+            ? { opacity: 1, maxHeight: '80px', marginTop: '10px' }
+            : { opacity: 0, maxHeight: '0px', marginTop: '0px' }}
+          transition={{ duration: 0.4, ease: [0.23,1,0.32,1] }}
+          className="font-serif italic text-sm font-light text-ivory-200/60 leading-relaxed overflow-hidden"
         >
           {wedding.brief}
         </motion.p>
 
-        {/* CTA */}
+        {/* CTA — hover reveal */}
         <motion.div
-          animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          transition={{ duration: 0.4, delay: 0.07 }}
+          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
+          transition={{ duration: 0.35, delay: 0.06 }}
           className="mt-5 flex items-center gap-2.5"
         >
-          <span className="label-caps-sm text-gold-400">View Story</span>
+          <span className="label-caps-sm text-gold-400">View Project</span>
           <motion.svg
-            animate={hovered ? { x: 4 } : { x: 0 }}
+            animate={{ x: hovered ? 4 : 0 }}
             transition={{ duration: 0.3 }}
             className="w-3.5 h-3.5 text-gold-400"
             fill="none" stroke="currentColor" viewBox="0 0 24 24"

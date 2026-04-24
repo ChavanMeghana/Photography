@@ -60,11 +60,11 @@ export default function Navbar() {
           {/* Center logo */}
           <NavLink to="/" className="absolute left-1/2 -translate-x-1/2 text-center group">
             <motion.div whileHover={{ opacity: 0.7 }} transition={{ duration: 0.3 }}>
-              <p className={`font-serif text-lg font-light tracking-[0.24em] uppercase transition-colors duration-600 ${onHero ? 'text-ivory-100' : 'text-warm-900'}`}>
-                Elena Marchetti
+              <p className={`font-serif text-xl font-light tracking-[0.32em] uppercase transition-colors duration-600 ${onHero ? 'text-ivory-100' : 'text-warm-900'}`}>
+                Bond
               </p>
-              <p className={`font-sans text-3xs tracking-mega uppercase mt-0.5 transition-colors duration-600 ${onHero ? 'text-ivory-300/50' : 'text-warm-400'}`}>
-                Photography
+              <p className={`font-sans text-3xs tracking-mega uppercase -mt-0.5 transition-colors duration-600 ${onHero ? 'text-ivory-300/50' : 'text-warm-400'}`}>
+                Studio
               </p>
             </motion.div>
           </NavLink>

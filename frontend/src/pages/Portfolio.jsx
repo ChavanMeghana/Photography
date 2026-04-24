@@ -9,7 +9,7 @@ import ParallaxBand from '../components/ParallaxBand'
 import { SectionLabel } from '../components/GoldDivider'
 import { weddings } from '../data/weddings'
 
-const filters = ['All', 'Summer', 'Spring', 'Autumn', 'Italy', 'France', 'Scotland']
+const filters = ['All', 'Portrait', 'Fashion', 'Landscape', 'Wedding', 'Commercial', 'Street']
 
 export default function Portfolio() {
   const [selected, setSelected] = useState(null)
@@ -17,7 +17,7 @@ export default function Portfolio() {
 
   const filtered = filter === 'All'
     ? weddings
-    : weddings.filter(w => w.season === filter || w.region.includes(filter))
+    : weddings.filter(w => w.type === filter)
 
   return (
     <PageTransition>
@@ -48,7 +48,7 @@ export default function Portfolio() {
 
         <div className="relative z-10 container-site px-6 sm:px-10 lg:px-16 pb-16">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.2 }}>
-            <span className="label-caps text-gold-400/50 block mb-3">Wedding Stories</span>
+            <span className="label-caps text-gold-400/50 block mb-3">Selected Work</span>
             <h1 className="heading-display text-display text-ivory-100">Portfolio</h1>
           </motion.div>
         </div>
@@ -59,7 +59,7 @@ export default function Portfolio() {
         <div className="container-site max-w-2xl mx-auto text-center">
           <ScrollReveal preset="fadeUp">
             <p className="italic-serif text-xl sm:text-2xl text-warm-600 leading-[1.7]">
-              Each wedding here is a complete story — a world that existed for one extraordinary day,
+              Each project here is a complete story — a world that existed for one extraordinary moment,
               and now lives forever in these photographs.
             </p>
           </ScrollReveal>
@@ -103,6 +103,7 @@ export default function Portfolio() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5, delay: i * 0.06, ease: [0.23,1,0.32,1] }}
+                  className="h-[380px]"
                 >
                   <WeddingStoryCard wedding={w} onClick={setSelected} />
                 </motion.div>
@@ -113,7 +114,7 @@ export default function Portfolio() {
           {filtered.length === 0 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               className="text-center py-28">
-              <p className="italic-serif text-warm-400 text-xl">No stories found for this selection.</p>
+              <p className="italic-serif text-warm-400 text-xl">No projects found for this selection.</p>
             </motion.div>
           )}
         </div>
@@ -121,16 +122,16 @@ export default function Portfolio() {
 
       {/* Parallax divider */}
       <ParallaxBand
-        src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?auto=format&fit=crop&w=1920&h=700&q=75"
-        gradient="radial-gradient(ellipse at 50% 60%, rgba(201,168,76,0.25) 0%, transparent 65%), linear-gradient(160deg,#0e0c09,#2c2018)"
+        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1920&h=700&q=75"
+        gradient="radial-gradient(ellipse at 50% 55%, rgba(245,166,35,0.20) 0%, transparent 65%), linear-gradient(160deg,#080808,#141414,#1E1E1E)"
         height="45vh"
         overlay="overlay-full"
       >
         <div className="text-center max-w-xl px-6">
           <ScrollReveal preset="fadeUp">
-            <p className="label-caps text-gold-400/50 mb-4">Currently Booking</p>
+            <p className="label-caps text-gold-400/50 mb-4">Now Accepting Projects</p>
             <h2 className="heading-serif text-2xl sm:text-3xl text-ivory-200 mb-5">2025 — 2026</h2>
-            <Link to="/contact" className="btn-gold">Check Availability</Link>
+            <Link to="/contact" className="btn-gold">Start a Conversation</Link>
           </ScrollReveal>
         </div>
       </ParallaxBand>
@@ -138,8 +139,8 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="bg-obsidian-900 py-12 border-t border-obsidian-700">
         <div className="container-site px-6 sm:px-10 lg:px-16 text-center">
-          <p className="font-serif italic text-xl font-light text-ivory-300/50 mb-1">Elena Marchetti Photography</p>
-          <p className="font-sans text-xs text-ivory-400/25">© {new Date().getFullYear()} All rights reserved.</p>
+          <p className="font-serif italic text-xl font-light text-ivory-300/50 mb-1">Bond Studio</p>
+          <p className="font-sans text-xs text-ivory-400/25">© {new Date().getFullYear()} Bond Studio. All rights reserved.</p>
         </div>
       </footer>
 
